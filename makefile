@@ -58,11 +58,15 @@ dbg : all
 all: $(TARGET)
 
 # Tool invocations
-$(TARGET): $(OBJ) $(LIB_DIR)$(LIB)
+$(TARGET): $(OUT) $(OBJ) $(LIB_DIR)$(LIB)
 	@echo 'Building target: $@ (GCC C++ Linker)'
 	$(CC) -o $(TARGET) $(OBJ) $(LDFLAGS)
 	@echo 'Finished building target: $@'
 	@echo ' '
+
+$(OUT):
+	@echo 'Making output directory $@'
+	@mkdir -p $(OUT)
 
 $(OUT)/%.o: %.cpp
 	@echo 'Building file: $< (GCC C++ Compiler)'
